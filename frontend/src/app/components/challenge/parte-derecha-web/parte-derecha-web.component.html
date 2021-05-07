@@ -1,0 +1,76 @@
+<ion-card-header class="user-header">
+  <ion-avatar
+    class="mini"
+    (click)="
+      goToProfile(
+        Challenge.challenged.userId.data.username
+      )
+    "
+  >
+    <ion-img
+      class="img-user-mini"
+      [src]="Challenge.challenged.userId.data.photo"
+    ></ion-img>
+    <div
+      class="connectedDIVlittlePost"
+      *ngIf="Challenge.challenged.userId.data.connected"
+    ></div>
+  </ion-avatar>
+  <div class="user-name">
+    <span
+      class="message profile-name"
+      (click)="
+        goToProfile(
+          Challenge.challenged.userId.data.username
+        )
+      "
+    >
+      {{ Challenge.challenged.userId.data.name }}
+      {{ Challenge.challenged.userId.data.last_name }}
+    </span>
+    <br />
+  </div>
+  <follow-btn-c [Challenge]="Challenge"></follow-btn-c>
+</ion-card-header>
+<div style="padding-left: 20px; padding-right: 20px">
+  <p class="title">{{ Challenge.title }}</p>
+  <p class="description all">
+    {{ Challenge.description }}
+    <span 
+     class="viewsNumber" 
+      style="
+        z-index: 99999999999999999999;
+        color:black;
+       "
+    >
+      {{ Challenge.views.length }} 
+    </span >
+    <img src="https://img.icons8.com/color/48/000000/visible--v1.png" style="width:20px;"/>
+  </p>
+</div>
+<ion-item-divider> </ion-item-divider>
+<h6 style="text-align:center;">
+  Otros retos de este tipo
+</h6>
+<ion-grid >
+  <ion-row style="justify-content: center;">
+    <ion-col *ngFor="let challenge of challenges" 
+      size-md="4"
+      size-sm="6"
+      size-xs="6"
+      style="cursor: pointer; height:100px"
+      (click)="goChallenge(challenge)"
+    >
+      <app-challenge-content 
+        [Challenge]="challenge"
+        [chain]="true"
+        [destroy]="destroy"
+      ></app-challenge-content>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<app-challenge-comments 
+  [comments]="Challenge.challenged.comments"
+  [referenceId]="Challenge.challenged._id"
+  [challenge]="Challenge._id"
+></app-challenge-comments>

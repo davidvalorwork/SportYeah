@@ -1,0 +1,55 @@
+<ion-content style="background-color: black">
+  <div class="usuario" *ngIf="user">
+    <ion-avatar>
+      <img [src]="user.photo" class="imgUsuario" />
+    </ion-avatar>
+    <p class="username">{{ user.username }}</p>
+  </div>
+  <ion-icon
+    name="close-outline"
+    (click)="mc.dismiss()"
+    style="
+      color: gray;
+      right: 5px;
+      top: 15px;
+      position: absolute;
+      font-size: 40px;
+      z-index: 9999999;
+      cursor: pointer;
+    "
+  ></ion-icon>
+  <div class="button-share">
+    <ion-button (click)="share()"  fill="outline" 
+      style="background-color: rgba(0,0,0,0.9); border-radius: 10px;"
+    >
+      {{ "post.share" | translate }}
+      <ion-icon slot="end" name="arrow-redo-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button
+      (click)="deleteImg()"
+      fill="outline"
+      color="danger"
+      *ngIf="delete"
+      style="background-color: rgba(0,0,0,0.9);"
+    >
+      {{ "delete" | translate }}
+      <ion-icon slot="end" name="trash-outline"></ion-icon>
+    </ion-button>
+  </div>
+
+<div
+  style="background-color: black; height: 100%"
+>
+ <ion-slides
+    *ngIf="showSlides"
+    pager="true"
+    [options]="slideOpts"
+    style="background-color: black; height: 100%"
+  >
+    <ion-slide class="slide" style="width: 100%">
+      <img [src]="img" class="img" alt="" style="width: 100%" />
+    </ion-slide>
+  </ion-slides>
+</div>
+</ion-content>

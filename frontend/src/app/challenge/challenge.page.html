@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-title *ngIf="challenge && user">
+      <ion-icon name="medal-outline"></ion-icon>
+      {{user | uppercase }} {{'challenge.retado' | translate}}
+    </ion-title>
+    <ion-title *ngIf="challenge && !user">
+      <ion-icon name="medal-outline"></ion-icon>
+      {{'challenges' | translate}}
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: white"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content style="background: white; z-index: 1;
+  overflow:hidden; text-align: center;">
+  <ion-spinner 
+    *ngIf="!challenge && !nochallenge"
+    style="width:5%; height:100%; margin:auto;"
+  ></ion-spinner>
+  <no-results 
+    *ngIf="nochallenge"
+    name="No se encontro este desafió"
+    [result]="activeRouter.snapshot.params.id"
+  ></no-results>
+  <ion-row 
+    style="height: 100%; text-align: left;"
+    *ngIf="challenge"
+  >
+    <ion-col size-xs="12" size-sm="12" size-lg="8" style="min-height:500px;">
+      <app-parte-izquierda-web
+        [Challenge]="challenge"
+        [destroy]="destroy"
+        [pauseS]="pause"
+        [scrollEvent]="scroll"
+      ></app-parte-izquierda-web>
+    </ion-col>
+    <ion-col size-xs="12" size-sm="12" size-lg="4" style="background: white">
+      <app-parte-derecha-web
+        [Challenge]="challenge"
+        [destroy]="destroy"
+        [pauseS]="pause"
+        [scrollEvent]="scroll"
+      ></app-parte-derecha-web>
+    </ion-col>
+  </ion-row>
+</ion-content>

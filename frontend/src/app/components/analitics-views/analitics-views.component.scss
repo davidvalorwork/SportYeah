@@ -1,0 +1,194 @@
+.card{
+    width: 90%;
+    position: relative;
+    left: 20%;
+}
+
+.button{
+    margin-inline: auto;
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    box-sizing: border-box;
+    max-width: 100%;
+    min-height: 62px;
+    div {
+      padding: 0 10px;
+    }
+  }
+
+  .icon{
+      position:relative;
+      left: 10%;
+  }
+
+  .calendar {
+    font-size: 28px;
+  }
+
+  .days{
+    position: relative;
+    left: 57%;
+    top:10%;
+    font-size: 30%;
+  }
+
+  .divChart{
+display: block;
+width: 400px;
+height: 400px;
+  }
+
+  .week-button{
+    font-size: 9px;
+    --background: #3d7dff ;
+    height: 30px;
+  }
+  .columDates{
+    text-align: center;
+  }
+
+  .scale{
+    transform:scale(0.9);
+  }
+ 
+  .image{
+    width:40%;
+    position:relative;
+    left: 35%;
+    top:0%;
+}
+.noData{
+    width:55%;
+    position:relative;
+    left: 20%;
+    top:0%;
+}
+.textNoData{
+  color:black;
+  position: relative;
+  left: 15;
+  text-align: center;
+}
+
+.botons{
+  --background: #3d7dff;
+  width: 100px;
+}
+
+  @media screen and (max-width:470px){
+    .divChart{
+      display: block;
+      width: 300px;
+      height: 300px;
+    }
+
+    .textNoData{
+      transform: scale(0.9);
+    }
+
+    
+    .h1Work{
+      transform: scale(0.8);
+    }
+    .helmet{
+      width: 10%;
+      position: relative;
+      top: 12%;
+      left: 17%;
+    }
+    .dumbbell{
+      width: 10%;
+      position: relative;
+      top: -92%;
+      left: 9%;
+    }
+    .bottle{
+      width: 10%;
+      position: relative;
+      top:12;
+      left: -7%;
+    }
+    .image{
+      width:97%;
+      position:relative;
+      left: 13%;
+      top:22%;
+
+      .xClose{
+        margin-left: 80%;
+        font-size: 20px;
+      }
+  }
+  }
+
+.helmet{
+  position: relative;
+  top: 37%;
+  left: 17%;
+  transform:rotate(142deg) ;
+  width: 30%;
+}
+.dumbbell{
+  position: relative;
+  top: 6%;
+  left: 9%;
+  transform:rotate(123deg) ;
+  width: 30%;
+}
+.bottle{
+  width: 28%;
+  position: relative;
+  top: 43%;
+  left: -7%;
+  transform: rotate(-90deg);
+}
+
+.iconsPost{
+  width: 30%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.firs{
+  --background: #b8dbf7e3;
+}
+
+.x{
+  width: 45%;
+  text-align: center;
+}
+
+.textCenter{
+  text-align: center;
+}
+
+.iconActual{
+  width: 20%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: -5%;
+}
+
+.semiBlack{
+  color: #000000;
+}
+
+.xClose{
+  float:right;
+text-align: right;
+  /* margin-left: 90%; */
+  font-size: 36px;
+  color: #ff0000bf; 
+  cursor: pointer;
+
+}
+
+.ion-segment-button{
+	width:100% !important
+}

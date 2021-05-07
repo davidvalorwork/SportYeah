@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar class="bg-gradient-person">
+    <ion-title>
+      <ion-icon name="medal-outline"></ion-icon>
+      {{'challenges' | translate}}
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button style="color: white"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-searchbar
+      style="text-align: left;"
+        [(ngModel)]="search"
+        (ngModelChange)="makeSearch()"
+        placeholder="{{'search' | translate}}"
+        animated
+        debounce="500"
+        color="light"
+      ></ion-searchbar>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content
+  class="bg-gradient-person"
+  style="margin: 0px"
+  [scrollEvents]="true"
+  (ionScroll)="sendScrollEvent()"
+>
+  <ion-fab-button color="secondary" (click)="create()" class="new"
+    style="z-index:9999999999999999999999999"
+    ><ion-icon name="add"></ion-icon
+  ></ion-fab-button>
+  <ion-grid style="padding: 0">
+    <ion-row class="bg-gradient-person">
+      <ion-col size-xs="12" size-lg="8" ngClass.xs="p-0" class="center">
+        <app-friends-mobile-c
+          (new_challenge)="create()"
+          class="absoluteFriendsC"
+        ></app-friends-mobile-c>
+        <ion-row class="actualizar bg-gradient-person" >
+          <ion-button
+            style="z-index: 10"
+            shape="round"
+            (click)="init()"
+            >Actualizar</ion-button
+          >
+        </ion-row>
+        <div
+          *ngIf="!challenges || challenges.length === 0 "
+          class="text-center"
+          style="margin-right: auto; margin-left: auto; margin-top:90px;"
+        >
+          <h1 style="color: white">{{'challenge.first' | translate}}</h1>
+          <img src="https://img.icons8.com/dusk/64/000000/planning-skill.png" />
+        </div>
+        <div *ngFor="let challenge of showc" style="margin-top: 20px">
+          <app-challenges-post
+            [destroy]="destroy"
+            [Challenge]="challenge"
+            [scrollEvent]="scrollEvent"
+          ></app-challenges-post>
+        </div>
+      </ion-col>
+      <ion-col
+        size-lg="4"
+        fxShow.lt-md="false"
+        class="ion-justify-content-center ion-align-items-center"
+      >
+        <friends-panel-desktop></friends-panel-desktop>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-infinite-scroll
+    threshold="1px"
+    (ionInfinite)="loadData($event)"
+    class="text-center"
+  >
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      *ngIf="showc !== challenges"
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

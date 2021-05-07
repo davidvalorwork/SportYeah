@@ -1,0 +1,90 @@
+<div *ngIf="post" [ngClass]="{'disabled':disabled}">
+  <ion-card ngClass.xs="m-p-0 " class="m-0"  style="width: 100%;">
+    <ion-card-header>
+      <header-post [displayOptions]="false" class="user-header" [post]="post" ></header-post>       
+
+    </ion-card-header>
+  
+    <ion-card-content (click)="goToPost(post._id)">
+      <p  style="user-select: none;pointer-events: none;white-space:pre-wrap;cursor: pointer;"><span class="message" [innerHTML]="post.message | links"></span></p>
+
+      <img class="img-post" *ngIf="post.image != null" [src]="post.image"/>
+      <iframe *ngIf="post.message  | youtube" [src]="post.message  | youtube" frameborder="0"></iframe>
+      <video *ngIf="post.video != null && post.video != ''"  controls="controls" preload="metadata"  webkit-playsinline="webkit-playsinline" class="videoPlayer">
+        <source [src]="post.video | safeUrl" type="video/mp4" />
+        <source [src]="post.video | safeUrl" type="video/ogg" />
+      </video>
+   
+    </ion-card-content>
+   
+  </ion-card>
+</div>
+
+<div *ngIf="news && news.stream == false" [ngClass]="{'disabled':disabled}">
+  <ion-card style="width: 40%;margin: auto;height: 82%; cursor: pointer;" (click)="OpenNews()">
+    <ion-card-header>
+      <ion-card-subtitle style="text-align: center;">{{ 'sport.'+news.sport| translate}}</ion-card-subtitle>
+      <ion-card-title style="text-align: center;">{{news.headline}}</ion-card-title>
+      <ion-item style="transform: scale(0.9);margin-bottom: -3%;">
+        <ion-label>
+          <ion-text color="black">
+            <h1 style="font-size:10px">{{news.user.name}} {{news.user.last_name}} </h1>
+          </ion-text>
+        </ion-label>
+        <ion-text color="black">
+          <h2 style="font-size:10px" >{{news.date | customDisplayDate}}</h2>
+        </ion-text>   
+      </ion-item>
+    </ion-card-header>
+    <ion-img *ngIf="news.principalImage"   class="imageMiniCard" [src]="news.principalImage"></ion-img>
+    <div *ngIf="news.principalVideo" style="position: relative">
+      <video
+        controls="controls"
+        preload="metadata"
+        autoplay="autoplay"
+        webkit-playsinline="webkit-playsinline"
+        class="videoPlayer"
+      >
+        <source [src]="news.principalVideo | safeUrl" type="video/mp4" />
+      </video>
+    </div> 
+  </ion-card>
+</div>
+<div *ngIf="news && news.stream == true"   (click)="goToStream()" [ngClass]="{'disabled':disabled}">
+  <ion-grid>
+    <ion-row>
+      <ion-col style="margin-top: -40px;text-align: center;" size="12">
+        <ion-text  color="black">
+          <h1 style="font-size:20px; color: black;">{{news.user.name}} {{news.user.last_name}} </h1>
+          <h3 style="font-size:10px">Esta transmitiendo bajo el nomre de: </h3><br>
+        </ion-text>
+        <ion-text  color="black">
+          <h3 style="font-size:15px; color: black;">{{news.headline}}</h3>
+        </ion-text>
+      </ion-col>
+     <!--  <ion-col size="12">
+        <div style="margin-right: auto; width: 100%">
+          <div id="localPlayer"  style="position: relative;" class="player">
+          
+          </div>
+          <div class="w-100"></div>
+       
+        </div>
+      </ion-col> -->
+      <ion-col style="text-align: center;" size="12">
+        <ion-button (click)="goToStream()" >Ver Stream </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+
+<!-- Se usa cuando proviene del shared-Post -->
+<div *ngIf="newsShared" [ngClass]="{'disabled':disabled}">
+  
+  <ion-card style="width: 40%;margin: auto;height: 82%; cursor: pointer;" (click)="OpenNews()">
+    <ion-card-header>
+      <header-post [displayOptions]="false" class="user-header" [post]="newsShared" ></header-post>       
+    </ion-card-header>
+    
+  </ion-card>
+</div>

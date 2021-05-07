@@ -1,0 +1,63 @@
+
+<div 
+(click)="pause()" 
+class="div"
+>
+  <ion-spinner *ngIf="!Mostrar" class="spinner"></ion-spinner>
+  <div
+    class="video"
+    [hidden]="!Mostrar"
+  >
+    <img
+      src="https://img.icons8.com/ios-filled/100/000000/circled-play.png"
+      *ngIf="pauseVideo || paused"
+      class="img3"
+    />
+    <video
+      width="100%"
+      height="100%"
+      class="video1"
+      loop
+      [id]="Challenge.challenged.media + Challenge._id + random"
+    >
+      <source
+        [src]="Challenge.challenged.media | safeUrl"
+        [id]="Challenge.challenged.media + Challenge._id + random"
+        type="video/mp4"
+      />
+      <source
+        [src]="Challenge.challenged.media | safeUrl"
+        [id]="Challenge.challenged.media + Challenge._id + random"
+        type="video/ogg"
+      />
+      <br />
+    </video>
+    <span 
+      *ngIf="Challenge.challenged._id === Challenge.challenging._id"
+      class="original"
+    >
+      <img
+        src="https://img.icons8.com/color/96/000000/verified-badge.png"
+        [ngClass]="scrollEvent ? 'img-original' : 'img-phone'"
+      />
+      <p class="original-text" *ngIf="scrollEvent">ORIGINAL</p>
+    </span>
+    <span 
+      *ngIf="chain && scrollEvent"
+      class="movement iconChain" 
+      style="bottom: 50px; left:20px"
+    >
+      <img
+        src="https://img.icons8.com/windows/32/000000/decentralized-network.png"
+        *ngIf="chain"
+        (click)="goChallenge()"
+        class="imggg"
+      />
+    </span>
+    <app-challenges-post-options
+      *ngIf="scrollEvent"
+      [Challenge]="Challenge"
+      [pause]="pauseS"
+    ></app-challenges-post-options>
+  </div>
+</div>

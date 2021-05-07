@@ -1,0 +1,16 @@
+<ion-button 
+  fill="clear"
+  [ngClass]="Challenge" 
+  (click)="openShared()"
+  style="background:rgb(0 0 0 / 70%)"
+  color="light"
+>
+  <ion-icon name="arrow-redo-outline" style="margin-right: 2px"></ion-icon>
+</ion-button>
+<p
+  style="margin: 0"
+  *ngIf="Challenge.challenging.shared"
+  class="profile-name marginleftforletters"
+>
+  {{ Challenge.challenged.shared.length }} {{ "challenge.shareds" | translate }}
+</p>

@@ -1,0 +1,24 @@
+.description {
+  font-family: proxima-regular, PingFangSC, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgb(18, 18, 18);
+}
+.title {
+  font-weight: bold;
+}
+.buttonNext{
+  text-align: center;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.viewsNumber {
+  color:#d9d3d3;
+  font-size: 12px;
+  margin-left: 30px;
+  font-weight: bold;
+}
+.all{
+   display: flex;
+   align-items:center;
+}

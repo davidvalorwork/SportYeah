@@ -1,0 +1,19 @@
+.flex{
+  display:flex;
+  background-color: rgba(0,0,0,0.5);
+  width: 100%;
+  position: absolute;
+  text-align: left;
+  padding:10px;
+  z-index:999999999 !important;
+}
+.viewsNumber {
+  color:#d9d3d3;
+  font-size: 12px;
+  margin-left: 30px;
+  font-weight: bold;
+}
+.all{
+   display: flex;
+   align-items:center;
+}

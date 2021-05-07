@@ -1,0 +1,180 @@
+
+<input
+  #fileChooser
+  (change)="img.uploadFile($event)"
+  hidden="true"
+  accept="video/*"
+  type="file"
+/>
+<app-camara-browser *ngIf="videoHere" (media)="camaraBrowserAns($event)" [timeLimit]="timeLimit">
+</app-camara-browser>
+<div
+  *ngIf="!media && !videoHere" 
+  class="text-center"
+  style="
+    margin-top:20px;
+  "
+>
+  <img src="https://i.ibb.co/g6TFj6G/Logo-TRANSPARENTE.png" 
+    style="width:100px"
+  />
+</div>
+<div 
+    *ngIf="!media && !videoHere" 
+    class="text-center"
+    style=" 
+      cursor: pointer; 
+      margin-left: 8%;
+      margin-right: 8%;
+      height: 60%;
+      padding-left: 9%;
+      padding-right: 9%;
+      padding: 30px;
+    "
+    (click)="challenge()"
+>
+  <ion-icon 
+    name="cloud-upload-outline"
+    style="
+      font-size: 100px; cursor: pointer;
+      color:rgba(22, 24, 35, 0.54)
+    "
+    ></ion-icon>
+  <h2 
+    style="color: rgba(22, 24, 35, 0.54)"
+  >{{ "challenge.upload" | translate }}
+  </h2>
+  <ul style="text-align:left">
+    <li 
+      style="color:rgba(22, 24, 35, 0.54)"
+    >
+      MP4 / WebM
+    </li>  
+    <li 
+      style="color:rgba(22, 24, 35, 0.54)"
+    >
+      Resolución de al menos 720X1280
+    </li>  
+    <li 
+      style="color:rgba(22, 24, 35, 0.54)"
+    >
+      Hasta 60 segundos
+    </li>  
+  </ul>
+</div>
+
+<div 
+  *ngIf="media && !videoHere" 
+  class="text-center"
+  style="
+   height:100%;
+  "
+>
+
+<ion-item-divider>
+    <ion-label>
+{{'challenge.original' | translate}}
+            </ion-label>
+</ion-item-divider>
+  <video
+    controlslist="nodownload"
+    hidden
+    controls="controls"
+    preload="metadata"
+    id="video2"
+    webkit-playsinline="webkit-playsinline"
+    class="bg-black"
+  >
+    <source [src]="media | safeUrl" type="video/mp4" />
+    <source [src]="media | safeUrl" type="video/ogg" />
+    <br />
+  </video>
+
+  <video
+    controlslist="nodownload"
+    controls="controls"
+    preload="metadata"
+    id="video"
+    style="max-height:100%;"
+    webkit-playsinline="webkit-playsinline"
+    class="bg-black"
+  >
+    <source [src]="media | safeUrl" type="video/mp4" />
+    <source [src]="media | safeUrl" type="video/ogg" />
+    <br />
+  </video>
+
+
+  <ion-button
+    *ngIf="videoValid"
+    fill="outline"
+    (click)="nextFunc()"
+  >
+    <ion-icon name="medal-outline" style="margin-right:5px"></ion-icon>
+    {{ "challenge.create" | translate }}
+  </ion-button
+  >
+
+
+  <br>
+
+  <ion-button 
+    fill="outline"  
+    (click)="close()"
+  >
+    {{'back'|translate}}
+  </ion-button>
+    
+  <br>
+  
+  <ion-button 
+    color="primary" 
+    (click)="again()"
+  >
+    <ion-icon name="sad-outline" style="margin-right:5px;"></ion-icon>
+    {{ "uploadAgain" | translate }}
+  </ion-button>
+
+
+<div
+  *ngIf="intentos.length > 0 && media"
+  class="text-center"
+>
+<ion-item-divider>
+    <ion-label>
+{{'challenge.trys' | translate}}
+            </ion-label>
+</ion-item-divider>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>{{ "intentos" | translate }}</ion-label>
+      <ion-toggle color="primary" [(ngModel)]="subirIntentos"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <hr />
+  <ion-row>
+    <ion-col *ngFor="let intento of intentos">
+      <video
+        controlslist="nodownload"
+        controls="controls"
+        preload="metadata"
+        id="video"
+        style="
+          width: 100%;
+          height: 150px;
+        "
+        webkit-playsinline="webkit-playsinline"
+        class=" bg-black"
+      >
+        <source [src]="intento | safeUrl" type="video/mp4" />
+        <source [src]="intento | safeUrl" type="video/ogg" />
+        <br />
+      </video>
+    </ion-col>
+  </ion-row>
+</div>
+
+
+</div>

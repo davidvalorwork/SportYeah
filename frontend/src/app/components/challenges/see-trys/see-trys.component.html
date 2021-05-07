@@ -1,0 +1,42 @@
+<ion-content style="background-color: black">
+  <div
+    style="background-color: black; height: 100%"
+  >
+    <ion-slides pager="true" [options]="slideOpts"
+      style="background-color: black; height: 100%"
+      *ngIf="showSlides"
+    >
+      <ion-slide
+        class="slide"
+        *ngFor="let intento of intentos"
+      >
+        <video
+          controlslist="nodownload"
+          controls="controls"
+          style="width:100%;height:100%;"
+          id="video"
+          preload="metadata"
+          webkit-playsinline="webkit-playsinline"
+          class="img"
+        >
+          <source [src]="intento | safeUrl" type="video/mp4" />
+          <source [src]="intento | safeUrl" type="video/ogg" />
+        </video>
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>
+<ion-icon
+  name="close-outline"
+  (click)="mc.dismiss()"
+  style="
+    color: gray;
+    right: 5px;
+    top: 15px;
+    position: absolute;
+    font-size: 40px;
+    z-index: 9999999;
+    cursor: pointer;
+  "
+></ion-icon>
+

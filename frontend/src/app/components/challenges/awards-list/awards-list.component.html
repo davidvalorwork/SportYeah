@@ -1,0 +1,25 @@
+<div class="text-center">
+  <div *ngIf="awards.length === 0" class="text-center">
+    <img src="https://img.icons8.com/clouds/100/000000/medal.png" />
+    <br />
+    <h3>{{ "challenge.noAwards" | translate }}</h3>
+  </div>
+  <ion-list class="text-center">
+    <ng-container *ngFor="let a of awards; let i = index">
+      <app-awards-accordion
+        [a]="a"
+        [creator]="creator"
+        [i]="i"
+        (delete)="delete($event)"
+      ></app-awards-accordion>
+    </ng-container>
+    <ion-button
+      fill="outline"
+      (click)="next.emit(null)"
+      *ngIf="creator"
+    >
+      <ion-icon name="trophy-outline" style="margin-right:5px"></ion-icon>
+      {{ "challenge.createAward" | translate }}
+    </ion-button >
+  </ion-list>
+</div>

@@ -1,0 +1,17 @@
+<ion-content class="text-center">
+  <h1>Premios</h1>
+  <app-awards-list [awards]="awards"></app-awards-list>
+</ion-content>
+<ion-icon
+  name="close-outline"
+  (click)="mc.dismiss()"
+  style="
+    color: gray;
+    right: 5px;
+    top: 15px;
+    position: absolute;
+    font-size: 40px;
+    z-index: 9999999;
+    cursor: pointer;
+  "
+></ion-icon>

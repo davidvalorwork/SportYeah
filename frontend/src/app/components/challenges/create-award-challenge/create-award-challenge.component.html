@@ -1,0 +1,147 @@
+<div class="text-center">
+  <div
+    [hidden]="
+      form.media !== '' && form.media !== null && form.media !== undefined
+    "
+    style="margin-top: 20px"
+  >
+    <ion-icon
+      name="cloud-upload-outline"
+      style="font-size: 100px; cursor: pointer"
+      (click)="awardMedia()"
+    ></ion-icon>
+    <h6 style="color: grey">{{ "challenge.mediaAward" | translate }}</h6>
+  </div>
+  <div
+    *ngIf="form.media !== '' && form.media !== null && form.media !== undefined"
+  >
+    <img [src]="form.media" alt="" (click)="awardMedia()" />
+  </div>
+
+  <ion-item>
+    <ion-label position="start">
+      <div #emojiButton>
+        <ion-button (click)="openEmojis($event)" style="float: right">
+          <ion-icon name="happy"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-label>
+    <ion-input 
+      type="text" 
+      #FormElementRef 
+      [(ngModel)]="form.title" 
+      placeholder=" {{ 'challenge.titleAward' | translate }}" 
+    >
+    </ion-input>
+  </ion-item>
+  <p class="errormsj" *ngIf="!form.title">
+    {{'createAward.conditions.title' | translate}}
+  </p>
+
+  <div class="text-center" #emojiContainer2>
+    <emoji-mart
+      [hidden]="!emojis"
+      (emojiClick)="addEmoji($event)"
+      title="Pick your emoji…"
+      emoji="point_up"
+      [showPreview]="true"
+    ></emoji-mart>
+  </div>
+  <ion-item>
+    <ion-label position="start">
+      <div #emojiButton>
+        <ion-button (click)="openEmojis2($event)" style="float: right">
+          <ion-icon name="happy"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-label>
+    <ion-textarea
+      type="text"
+      #FormElementRef2
+      [(ngModel)]="form.description"
+      placeholder=" {{ 'challenge.description' | translate }}"
+    ></ion-textarea>
+  </ion-item>
+
+  <p class="errormsj" *ngIf="!form.description">
+    {{'createAward.conditions.description' | translate}}
+  </p>
+
+  <div class="text-center" #emojiContainer>
+    <emoji-mart
+      [hidden]="!emojis2"
+      (emojiClick)="addEmoji2($event)"
+      title="Pick your emoji…"
+      emoji="point_up"
+      [showPreview]="true"
+    ></emoji-mart>
+  </div>
+
+  <ion-item>
+    <ion-label>{{ "selectDesafiosPremios.Title" | translate }}</ion-label>
+    <ion-select
+      [(ngModel)]="form.condition"
+      placeholder="{{ 'selectDesafiosPremios.SelectOne' | translate }}"
+      okText="Aceptar"
+      cancelText="Cancelar"
+    >
+      <ion-select-option
+        [value]="condition.value"
+        *ngFor="let condition of conditions"
+        >{{
+          "selectDesafiosPremios." + condition.value | translate
+        }}</ion-select-option
+      >
+    </ion-select>
+  </ion-item>
+  
+  <p class="errormsj" *ngIf="!form.condition">
+    {{ 'createAward.conditions.condition' | translate}}
+  </p>
+
+  <ion-item>
+    <ion-label position="stacked">{{
+      "challenge.date" | translate
+    }}</ion-label>
+    <ion-input type="date" [(ngModel)]="form.date"></ion-input>
+  </ion-item>
+
+  <p class="errormsj" *ngIf="!form.date">
+    {{'createAward.conditions.date' | translate}}
+  </p>
+
+  <ion-item>
+    <ion-label position="floating">{{
+      "challenge.place" | translate
+    }}</ion-label>
+    <ion-input type="number" min="1" [(ngModel)]="form.place"></ion-input>
+  </ion-item>
+
+  <p class="errormsj" *ngIf="!form.place">
+    {{'createAward.conditions.place' | translate}}
+  </p>
+
+
+  <!-- SELECT CONDITIONS -->
+
+  <div style="margin-top: 20px">
+    <ion-button
+      fill="outline"
+      (click)="close()"
+    >
+      {{ "back" | translate }}
+    </ion-button>
+
+    <ion-button
+      (click)="saveAward()"
+      [disabled]="
+        form.place === '' ||
+        form.title === '' ||
+        form.description === '' ||
+        form.condition === '' 
+      "
+    >
+      {{ "save" | translate }}
+    </ion-button>
+  </div>
+</div>

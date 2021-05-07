@@ -1,0 +1,25 @@
+<div class="timeDiv">
+  <p class="time">{{'timeLimit' | translate}} </p>
+  <p class="timeLimit"> {{timeLimit}}</p>
+</div>
+<div class="video-wrap text-center videoHerediv">
+  <video id="video2" autoplay class="videoHere"
+  ></video>
+</div>
+<div class="controller text-center buttons" >
+  <ion-button (click)="reanude()" *ngIf="recording && paused"
+    fill="outline"
+    class="buttonfloat"
+    ><ion-icon name="stop-circle-outline"></ion-icon
+    >{{ "recording.reanude" | translate }}</ion-button
+  >
+  <ion-button 
+    (click)="stopRecording.next()" 
+     *ngIf="recording && timeLimit === 60"
+    fill="outline"
+    class="buttonfloat"
+    ><ion-icon name="stop-outline"></ion-icon
+    >{{ "recording.stop" | translate }}</ion-button
+  >
+</div>
+<span id="errorMsg"></span>

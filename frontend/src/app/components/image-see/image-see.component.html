@@ -1,0 +1,32 @@
+<ion-content *ngIf="data" class="text-center">
+  <ion-item>
+    <ion-label position="stacked">{{ "search" | translate }}</ion-label>
+    <ion-input [(ngModel)]="search" (ngModelChange)="onsearch()"></ion-input>
+  </ion-item>
+  <div *ngFor="let photo of data; let i = index">
+    <div *ngIf="i < 3">
+      <ion-img
+        [src]="photo.webformatURL"
+        (click)="send(photo)"
+        style="cursor: pointer"
+      ></ion-img>
+    </div>
+  </div>
+</ion-content>
+
+<ion-button
+  color="light"
+  style="
+    position: absolute;
+    z-index: 9;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+  "
+  (click)="close()"
+>
+  Cerrar
+</ion-button>
